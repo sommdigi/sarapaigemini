@@ -1,184 +1,131 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-
 export default function Home() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(true);
-    
-    const handleMouseMove = (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 15;
-      const y = (e.clientY / window.innerHeight - 0.5) * 15;
-      setMousePosition({ x, y });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-stone-50 via-amber-50 to-stone-100 flex items-center justify-center p-4">
-      
-      {/* Subtle floating elements */}
+      {/* Futuristic Wine Geometry Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating geometric shapes */}
-        <div className="absolute top-20 left-16 opacity-20 animate-pulse">
-          <div className="w-12 h-12 border border-stone-400 rounded-full"></div>
+        {/* Digital Wine Glass Outline */}
+        <div className="absolute top-16 left-20 opacity-30 animate-pulse" style={{animationDuration: '3s'}}>
+          <svg className="w-12 h-16 text-stone-400" fill="none" stroke="currentColor" strokeWidth="1" viewBox="0 0 24 24">
+            <path d="M8 2V11C8 13.21 9.79 15 12 15S16 13.21 16 11V2H8M11 16H13V20H16V22H8V20H11V16Z"/>
+          </svg>
         </div>
-        <div className="absolute bottom-32 right-20 opacity-15 animate-bounce" style={{animationDuration: '4s'}}>
-          <div className="w-8 h-8 border border-amber-600 transform rotate-45"></div>
-        </div>
-        <div className="absolute top-1/3 right-32 opacity-25 animate-pulse" style={{animationDelay: '2s'}}>
-          <div className="w-2 h-2 bg-amber-600 rounded-full"></div>
-        </div>
-      </div>
 
-      {/* Corner Labels */}
-      <div className="absolute top-8 left-8 text-stone-600 text-sm font-light tracking-widest">
-        ŞARAP-01
-      </div>
-      <div className="absolute top-8 right-8 text-stone-600 text-sm font-light tracking-widest">
-        TÜRKÇE AI
+        {/* Floating Wine Bottle Silhouette */}
+        <div className="absolute top-32 right-16 opacity-25 animate-bounce" style={{animationDuration: '4s', animationDelay: '1s'}}>
+          <svg className="w-6 h-20 text-stone-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 2V4H8V6H9V8C9 8.55 9.45 9 10 9H11V20C11 21.1 11.9 22 13 22C14.1 22 15 21.1 15 20V9H16C16.55 9 17 8.55 17 8V6H18V4H17V2H9Z"/>
+          </svg>
+        </div>
+
+        {/* Neural Network Wine Connections */}
+        <div className="absolute top-40 left-32 opacity-20">
+          <div className="relative">
+            <div className="w-2 h-2 bg-amber-600 rounded-full animate-ping"></div>
+            <div className="absolute top-0 left-0 w-16 h-0.5 bg-gradient-to-r from-amber-600 to-transparent transform rotate-45 animate-pulse"></div>
+            <div className="absolute top-0 left-0 w-12 h-0.5 bg-gradient-to-r from-amber-600 to-transparent transform -rotate-12 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+          </div>
+        </div>
+
+        {/* Grape Cluster Digital Pattern */}
+        <div className="absolute bottom-32 left-16 opacity-30 animate-pulse" style={{animationDuration: '2.5s', animationDelay: '2s'}}>
+          <div className="grid grid-cols-3 gap-1">
+            <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+            <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+            <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full ml-1"></div>
+            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-1"></div>
+            <div className="w-1 h-1 bg-purple-400 rounded-full ml-2"></div>
+            <div className="w-1 h-1 bg-purple-400 rounded-full"></div>
+            <div className="w-1 h-1 bg-purple-400 rounded-full mr-2"></div>
+          </div>
+        </div>
+
+        {/* AI Data Flow Lines */}
+        <div className="absolute top-20 right-32 opacity-25">
+          <div className="flex flex-col space-y-2">
+            <div className="w-16 h-0.5 bg-gradient-to-r from-stone-500 to-transparent animate-pulse"></div>
+            <div className="w-12 h-0.5 bg-gradient-to-r from-stone-500 to-transparent animate-pulse" style={{animationDelay: '0.3s'}}></div>
+            <div className="w-20 h-0.5 bg-gradient-to-r from-stone-500 to-transparent animate-pulse" style={{animationDelay: '0.6s'}}></div>
+          </div>
+        </div>
+
+        {/* Cork Geometric Shape */}
+        <div className="absolute bottom-40 right-24 opacity-20 animate-bounce" style={{animationDuration: '5s'}}>
+          <div className="w-3 h-8 bg-amber-700 rounded-sm transform rotate-12"></div>
+        </div>
+
+        {/* Floating Digital Nodes */}
+        <div className="absolute top-1/3 left-1/4 opacity-40">
+          <div className="relative">
+            <div className="w-3 h-3 bg-stone-600 rounded-full animate-ping" style={{animationDuration: '3s'}}></div>
+            <div className="absolute top-1 left-1 w-1 h-1 bg-white rounded-full"></div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-1/4 right-1/3 opacity-35">
+          <div className="relative">
+            <div className="w-2 h-2 bg-amber-600 rounded-full animate-ping" style={{animationDuration: '4s', animationDelay: '1s'}}></div>
+            <div className="absolute top-0.5 left-0.5 w-0.5 h-0.5 bg-white rounded-full"></div>
+          </div>
+        </div>
+
+        {/* Wine Drop Digital Effect */}
+        <div className="absolute top-60 right-40 opacity-30 animate-bounce" style={{animationDuration: '3s', animationDelay: '1.5s'}}>
+          <div className="w-4 h-6 bg-red-800 rounded-full rounded-t-none transform rotate-180"></div>
+        </div>
+
+        {/* Futuristic Grid Pattern */}
+        <div className="absolute bottom-20 left-1/2 opacity-15">
+          <div className="grid grid-cols-4 gap-2">
+            {Array.from({length: 8}).map((_, i) => (
+              <div key={i} className="w-1 h-1 bg-stone-400 rounded-full animate-pulse" style={{animationDelay: `${i * 0.2}s`}}></div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Main Content */}
-      <div className="text-center relative z-10 max-w-2xl w-full">
-        
-        {/* Brand Name */}
-        <h1 className={`text-6xl md:text-8xl font-bold text-stone-800 mb-16 tracking-wider transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          ŞARAP.AI
-        </h1>
+      <div className="max-w-2xl w-full text-center relative z-10 space-y-12">
+        {/* Brand name - BIGGER & BOLDER */}
+        <div className="space-y-4">
+          <h1 className="text-7xl md:text-8xl font-bold text-stone-800 tracking-wider drop-shadow-sm">
+            ŞARAP.AI
+          </h1>
+          <div className="w-32 h-1 bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto animate-pulse"></div>
+        </div>
 
-        {/* 3D Realistic Grape Cluster */}
-        <div className="relative mb-16 flex justify-center">
-          <div 
-            className="relative transition-transform duration-200 ease-out"
-            style={{
-              transform: `perspective(1000px) rotateX(${mousePosition.y * 0.3}deg) rotateY(${mousePosition.x * 0.5}deg)`
-            }}
-          >
-            {/* Realistic 3D Grape Cluster with proper shading */}
-            <div className="relative">
-              
-              {/* Grape stem */}
-              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-2 h-6 bg-gradient-to-b from-green-600 to-green-700 rounded-full shadow-md"></div>
-              
-              {/* Top row - 3 grapes */}
-              <div className="flex justify-center space-x-1 mb-1">
-                {[0, 1, 2].map((i) => (
-                  <div key={i} className="relative w-10 h-10">
-                    {/* Main grape body */}
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 via-purple-600 to-purple-800 shadow-xl relative overflow-hidden">
-                      {/* Top highlight */}
-                      <div className="absolute top-1 left-2 w-3 h-3 bg-white/40 rounded-full blur-sm"></div>
-                      {/* Side highlight */}
-                      <div className="absolute top-2 right-1 w-1 h-4 bg-white/20 rounded-full"></div>
-                      {/* Bottom shadow */}
-                      <div className="absolute bottom-0 left-0 w-full h-3 bg-purple-900/30 rounded-full"></div>
-                    </div>
-                    {/* Grape shadow */}
-                    <div className="absolute -bottom-1 left-1 w-8 h-2 bg-stone-300 rounded-full blur-sm opacity-30"></div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Second row - 4 grapes */}
-              <div className="flex justify-center space-x-0.5 mb-1">
-                {[0, 1, 2, 3].map((i) => (
-                  <div key={i} className="relative w-9 h-9">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 via-purple-700 to-purple-900 shadow-xl relative overflow-hidden">
-                      <div className="absolute top-1 left-1.5 w-2.5 h-2.5 bg-white/35 rounded-full blur-sm"></div>
-                      <div className="absolute top-1.5 right-0.5 w-0.5 h-3 bg-white/15 rounded-full"></div>
-                      <div className="absolute bottom-0 left-0 w-full h-2.5 bg-purple-900/40 rounded-full"></div>
-                    </div>
-                    <div className="absolute -bottom-1 left-0.5 w-7 h-1.5 bg-stone-300 rounded-full blur-sm opacity-25"></div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Third row - 5 grapes */}
-              <div className="flex justify-center space-x-0 mb-1">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <div key={i} className="relative w-8 h-8">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 via-purple-800 to-stone-900 shadow-xl relative overflow-hidden">
-                      <div className="absolute top-0.5 left-1 w-2 h-2 bg-white/30 rounded-full blur-sm"></div>
-                      <div className="absolute top-1 right-0 w-0.5 h-2.5 bg-white/10 rounded-full"></div>
-                      <div className="absolute bottom-0 left-0 w-full h-2 bg-stone-900/50 rounded-full"></div>
-                    </div>
-                    <div className="absolute -bottom-0.5 left-0.5 w-6 h-1 bg-stone-300 rounded-full blur-sm opacity-20"></div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Fourth row - 4 grapes */}
-              <div className="flex justify-center space-x-0.5 mb-1">
-                {[0, 1, 2, 3].map((i) => (
-                  <div key={i} className="relative w-7 h-7">
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-700 via-stone-800 to-stone-900 shadow-xl relative overflow-hidden">
-                      <div className="absolute top-0.5 left-1 w-1.5 h-1.5 bg-white/25 rounded-full blur-sm"></div>
-                      <div className="absolute bottom-0 left-0 w-full h-1.5 bg-stone-900/60 rounded-full"></div>
-                    </div>
-                    <div className="absolute -bottom-0.5 left-0.5 w-5 h-1 bg-stone-300 rounded-full blur-sm opacity-15"></div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Bottom row - 2 grapes */}
-              <div className="flex justify-center space-x-1">
-                {[0, 1].map((i) => (
-                  <div key={i} className="relative w-6 h-6">
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-800 via-stone-900 to-black shadow-xl relative overflow-hidden">
-                      <div className="absolute top-0.5 left-0.5 w-1 h-1 bg-white/20 rounded-full blur-sm"></div>
-                      <div className="absolute bottom-0 left-0 w-full h-1 bg-black/70 rounded-full"></div>
-                    </div>
-                    <div className="absolute -bottom-0.5 left-0.5 w-4 h-0.5 bg-stone-300 rounded-full blur-sm opacity-10"></div>
-                  </div>
-                ))}
-              </div>
+        {/* Value proposition - More Dynamic */}
+        <div className="space-y-6">
+          <h2 className="text-2xl md:text-3xl font-semibold text-stone-700 leading-relaxed tracking-wide">
+            Şarabı Türkçe Anlatan Yapay Zeka
+          </h2>
+          <div className="flex justify-center space-x-2 opacity-60">
+            <div className="w-2 h-2 bg-amber-600 rounded-full animate-bounce"></div>
+            <div className="w-2 h-2 bg-stone-600 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+            <div className="w-2 h-2 bg-amber-600 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
+          </div>
+        </div>
+
+        {/* Coming soon with POWER */}
+        <div className="pt-8">
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-stone-600 to-amber-600 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+            <div className="relative px-12 py-6 bg-stone-800 text-white rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <p className="text-xl md:text-2xl font-bold tracking-wider">
+                ÇOK YAKINDA
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Clear and readable "ÇOK YAKINDA" */}
-        <div className={`mb-8 transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-block px-12 py-4 bg-stone-800 text-white rounded-full shadow-2xl">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-widest">
-              ÇOK YAKINDA
-            </h2>
-          </div>
-        </div>
-
-        {/* Subtitle */}
-        <h3 className={`text-xl md:text-2xl font-normal text-stone-700 mb-12 tracking-wide leading-relaxed transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          Dünya'nın İlk Türkçe Şarap Yapay Zekası
-        </h3>
-
-        {/* AI Processing Animation */}
-        <div className={`flex justify-center items-center space-x-4 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="flex space-x-1">
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="w-1.5 h-8 bg-gradient-to-t from-stone-600 to-amber-600 animate-pulse rounded-full"
-                style={{
-                  animationDelay: `${i * 0.2}s`,
-                  animationDuration: '1.5s'
-                }}
-              />
-            ))}
-          </div>
-          <span className="text-stone-600 text-sm tracking-widest font-medium">YAKINDA AKTİF</span>
-          <div className="flex space-x-1">
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="w-1.5 h-8 bg-gradient-to-t from-stone-600 to-amber-600 animate-pulse rounded-full"
-                style={{
-                  animationDelay: `${i * 0.2 + 0.5}s`,
-                  animationDuration: '1.5s'
-                }}
-              />
-            ))}
-          </div>
+        {/* Futuristic Loading Indicator */}
+        <div className="flex justify-center items-center space-x-3 pt-8">
+          <div className="w-3 h-3 bg-gradient-to-r from-stone-600 to-amber-600 rounded-full animate-pulse"></div>
+          <div className="w-8 h-0.5 bg-gradient-to-r from-stone-600 to-amber-600 animate-pulse" style={{animationDelay: '0.2s'}}></div>
+          <div className="w-3 h-3 bg-gradient-to-r from-amber-600 to-stone-600 rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
+          <div className="w-8 h-0.5 bg-gradient-to-r from-amber-600 to-stone-600 animate-pulse" style={{animationDelay: '0.6s'}}></div>
+          <div className="w-3 h-3 bg-gradient-to-r from-stone-600 to-amber-600 rounded-full animate-pulse" style={{animationDelay: '0.8s'}}></div>
         </div>
       </div>
     </div>
