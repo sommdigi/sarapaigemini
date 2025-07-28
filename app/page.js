@@ -1,146 +1,75 @@
-'use client';
-
-import { useState, useRef, useEffect } from 'react';
-import ReactMarkdown from 'react-markdown';
-
 export default function Home() {
-  const [history, setHistory] = useState([]);
-  const [userInput, setUserInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const chatEndRef = useRef(null);
-
-  // Automatically scroll to the bottom of the chat
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [history]);
-
-  // Set a default welcome message
-  useEffect(() => {
-    setHistory([{
-      role: 'model',
-      parts: [{ text: "Merhaba! Ben Sarap.ai, senin kişisel şarap arkadaşın. Şarap dünyası hakkında merak ettiklerini sorabilirsin." }]
-    }]);
-  }, []);
-
-  const handleSendMessage = async () => {
-    if (!userInput.trim() || isLoading) return;
-
-    const newUserMessage = {
-      role: 'user',
-      parts: [{ text: userInput }],
-    };
-
-    setIsLoading(true);
-    // Add user message to history immediately for a responsive feel
-    setHistory(prev => [...prev, newUserMessage]);
-    setUserInput('');
-
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          // Send the last 10 messages for context to keep the payload light
-          history: [...history, newUserMessage].slice(-10),
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`API error: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      
-      const newModelMessage = {
-        role: 'model',
-        parts: [{ text: data.response }],
-      };
-
-      setHistory(prev => [...prev, newModelMessage]);
-
-    } catch (error) {
-      console.error("Failed to send message:", error);
-      const errorMessage = {
-        role: 'model',
-        parts: [{ text: "Üzgünüm, bir sorun oluştu. Lütfen daha sonra tekrar dene." }],
-      };
-      // To prevent duplicate user message on error, we replace the user's last message with the error.
-      // A better UX would be to show an error icon next to the user's message.
-      setHistory(prev => [...prev.slice(0, -1), errorMessage]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
-    }
-  };
-
   return (
-    <div className="flex flex-col h-screen bg-light-bg font-sans">
-      <header className="bg-wine-dark p-4 shadow-md z-10">
-        <h1 className="text-2xl font-bold text-gold-accent text-center">Sarap.ai</h1>
-      </header>
-
-      <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
-        <div className="max-w-3xl mx-auto">
-          {history.map((msg, index) => (
-            <div key={index} className={`flex my-4 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`p-4 rounded-2xl max-w-lg lg:max-w-xl shadow ${
-                msg.role === 'user'
-                  ? 'bg-wine-light text-light-text rounded-br-none'
-                  : 'bg-white text-dark-text rounded-bl-none'
-              }`}>
-                <ReactMarkdown className="prose prose-sm max-w-none">
-                  {msg.parts[0].text}
-                </ReactMarkdown>
-              </div>
-            </div>
-          ))}
-          {isLoading && (
-            <div className="flex justify-start my-4">
-              <div className="p-4 rounded-2xl max-w-lg lg:max-w-xl shadow bg-white text-dark-text rounded-bl-none">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-wine-dark rounded-full animate-pulse"></div>
-                  <div className="w-2 h-2 bg-wine-dark rounded-full animate-pulse [animation-delay:0.2s]"></div>
-                  <div className="w-2 h-2 bg-wine-dark rounded-full animate-pulse [animation-delay:0.4s]"></div>
-                </div>
-              </div>
-            </div>
-          )}
-          <div ref={chatEndRef} />
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-stone-50 via-amber-50 to-stone-100 flex items-center justify-center p-4">
+      {/* Floating geometric shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Large floating triangle */}
+        <div className="absolute top-20 left-16 opacity-30 animate-pulse">
+          <div className="w-16 h-16 border-l-2 border-t-2 border-stone-400 transform rotate-45"></div>
         </div>
-      </main>
+        
+        {/* Floating circle */}
+        <div className="absolute top-32 right-20 opacity-25 animate-bounce" style={{animationDuration: '4s'}}>
+          <div className="w-12 h-12 border-2 border-stone-400 rounded-full"></div>
+        </div>
+        
+        {/* Small geometric square */}
+        <div className="absolute bottom-32 left-24 opacity-20 animate-pulse" style={{animationDelay: '2s'}}>
+          <div className="w-8 h-8 border border-stone-400 transform rotate-12"></div>
+        </div>
+        
+        {/* Ultra minimal grape hint - single dot */}
+        <div className="absolute bottom-40 right-32 opacity-40 animate-ping" style={{animationDuration: '3s'}}>
+          <div className="w-3 h-3 bg-amber-600 rounded-full"></div>
+        </div>
+        
+        {/* Floating rectangle */}
+        <div className="absolute top-1/2 right-16 opacity-20 animate-bounce" style={{animationDuration: '5s', animationDelay: '1s'}}>
+          <div className="w-20 h-4 border border-stone-400 transform -rotate-12"></div>
+        </div>
+        
+        {/* Small floating dots */}
+        <div className="absolute top-40 left-1/3 opacity-30 animate-ping" style={{animationDelay: '3s'}}>
+          <div className="w-2 h-2 bg-stone-400 rounded-full"></div>
+        </div>
+        
+        <div className="absolute bottom-20 right-1/4 opacity-25 animate-ping" style={{animationDuration: '4s', animationDelay: '1.5s'}}>
+          <div className="w-1.5 h-1.5 bg-amber-600 rounded-full"></div>
+        </div>
+      </div>
 
-      <footer className="bg-white/80 backdrop-blur-sm p-4 border-t border-gray-200 sticky bottom-0">
-        <div className="max-w-3xl mx-auto">
-          <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm overflow-hidden">
-            <textarea
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Bir soru sorun..."
-              className="flex-1 p-4 bg-transparent resize-none outline-none text-dark-text placeholder-gray-500"
-              rows="1"
-              disabled={isLoading}
-            />
-            <button
-              onClick={handleSendMessage}
-              disabled={isLoading || !userInput.trim()}
-              className="p-3 m-2 rounded-full bg-wine-dark text-white disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-wine-light transition-colors duration-200"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
-              </svg>
-            </button>
+      {/* Main content */}
+      <div className="max-w-lg w-full text-center relative z-10 space-y-8">
+        {/* Brand name */}
+        <div className="space-y-2">
+          <h1 className="text-5xl md:text-6xl font-light text-stone-800 tracking-wider">
+            Sarap.ai
+          </h1>
+        </div>
+
+        {/* Value proposition */}
+        <div className="space-y-4">
+          <h2 className="text-xl md:text-2xl font-normal text-stone-700 leading-relaxed tracking-wide">
+            Şarabı Türkçe Anlatan Yapay Zeka
+          </h2>
+        </div>
+
+        {/* Coming soon with emphasis */}
+        <div className="pt-8">
+          <div className="inline-block px-8 py-4 bg-stone-800 text-white rounded-full shadow-lg">
+            <p className="text-lg md:text-xl font-medium tracking-wide">
+              Çok Yakında
+            </p>
           </div>
         </div>
-      </footer>
+
+        {/* Subtle loading indicator */}
+        <div className="flex justify-center items-center space-x-1 pt-6">
+          <div className="w-2 h-2 bg-stone-400 rounded-full animate-bounce"></div>
+          <div className="w-2 h-2 bg-stone-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+          <div className="w-2 h-2 bg-stone-400 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
+        </div>
+      </div>
     </div>
   );
 }
